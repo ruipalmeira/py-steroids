@@ -46,7 +46,7 @@ def main():
             for s in shots:
                 if a.IsColliding(s):
                     print("asteroid shot!")
-                    a.kill()
+                    a.split()
                     s.kill()
         
          # Debug prints
