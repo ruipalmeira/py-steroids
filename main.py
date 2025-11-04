@@ -1,6 +1,8 @@
 import pygame
 from constants import *
 from player import *
+from asteroid import *
+from asteroidfield import *
 
 def main():
     pygame.init()
@@ -11,9 +13,14 @@ def main():
     # sprite group declaration
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
+    
     Player.containers = (updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = (updatable,)
 
     p1 = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
+    field = AsteroidField()
 
     print("Starting Asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}")
@@ -27,9 +34,23 @@ def main():
         screen.fill((0,0,0))
         #update gameobjects
         updatable.update(dt)
+        
+        
+         # Debug prints
+        print(f"Total sprites: {len(drawable)}")
+        print(f"Total asteroids: {len(asteroids)}")
+        
+        print("Drawable contents:")
+        for s in list(drawable)[:10]:
+            print(type(s).__name__, int(s.position.x), int(s.position.y), getattr(s, "radius", None))
+        
         #draw gameobjects individually
         for sprite in drawable:
             sprite.draw(screen)
+            # Debug: Draw red dot at sprite position
+            pos = (int(sprite.position.x), int(sprite.position.y))
+            pygame.draw.circle(screen, (255, 0, 0), pos, 3)
+            
         pygame.display.flip()
         dt = (gameclock.tick(60)/1000)
         #print(f"secconds: {dt}")
