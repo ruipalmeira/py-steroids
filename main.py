@@ -43,6 +43,11 @@ def main():
                 print("Game Over!")
                 pygame.quit()
                 return
+            for s in shots:
+                if a.IsColliding(s):
+                    print("asteroid shot!")
+                    a.kill()
+                    s.kill()
         
          # Debug prints
         print(f"Total sprites: {len(drawable)}")
