@@ -1,5 +1,5 @@
 from circleshape import *
-from constants import PLAYER_RADIUS
+from constants import PLAYER_RADIUS, PLAYER_COLOR
 
 class Player(CircleShape):
   rotation = 0
@@ -15,7 +15,7 @@ class Player(CircleShape):
     return [a, b, c]
   
   def draw(self, screen):
-    playerColor = (255, 255, 255)
+    playerColor = PLAYER_COLOR
     pointList = self.triangle()
     lineWidth = 2
     pygame.draw.polygon(screen, playerColor, pointList, lineWidth)
