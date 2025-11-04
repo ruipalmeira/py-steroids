@@ -8,6 +8,11 @@ def main():
     gameclock = pygame.time.Clock()
     dt = 0
 
+    # sprite group declaration
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)
+
     p1 = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
 
     print("Starting Asteroids!")
@@ -20,8 +25,11 @@ def main():
             if event.type == pygame.QUIT:
                 return
         screen.fill((0,0,0))
-        p1.update(dt)
-        p1.draw(screen)
+        #update gameobjects
+        updatable.update(dt)
+        #draw gameobjects individually
+        for sprite in drawable:
+            sprite.draw(screen)
         pygame.display.flip()
         dt = (gameclock.tick(60)/1000)
         #print(f"secconds: {dt}")
