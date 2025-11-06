@@ -4,6 +4,7 @@ from player import *
 from asteroid import *
 from asteroidfield import *
 from shoot import *
+from logger import log_state
 
 def main():
     pygame.init()
@@ -31,6 +32,7 @@ def main():
 
     #create infinite game loop
     while True:
+        log_state()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
