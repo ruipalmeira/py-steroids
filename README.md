@@ -7,3 +7,4 @@ a version of the classic Asteroids game.
 - PyGame 2.6.1
 - SDL 2 (v2.32.10) 
 - UV (0.9.7)
+- jq (v1.8.1) https://jqlang.org/download/
